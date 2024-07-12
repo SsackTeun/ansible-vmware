@@ -1,0 +1,18 @@
+---
+# tasks file for roles/create-folder
+- name: DataCenter 에 VM 폴더 생성
+  community.vmware.vcenter_folder:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    datacenter_name: "{{ datacenter_name }}"
+    folder_name: "{{ folder_name }}"
+    folder_type: "{{ folder_type }}"
+    state: present
+    validate_certs: "{{ validate_certs }}"
+  register: vm_folder_creation_result
+  delegate_to: localhost
+
+- name: Debug
+  debug:
+    var:  vm_folder_creation_result

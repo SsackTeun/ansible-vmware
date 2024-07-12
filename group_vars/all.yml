@@ -1,0 +1,273 @@
+# vCenter INFO
+vcenter_hostname: 192.168.123.3 
+vcenter_username: administrator@vsphere.local
+vcenter_password: Onware7031!@
+datacenter_name: onware
+validate_certs: no
+vcenter_datastore: Fujitsu02-Datastore
+
+folder_name: "Create-By-Ansible"
+folder_type: "vm"
+
+# vm spec
+vms:
+  - name: "ceph-1"
+    memory_mb: 8196 
+    num_cpus: 8
+    networks:
+      - name: idpp-external-net
+        ip: "10.130.39.21"
+        netmask: "255.255.255.0"
+        gateway: "10.130.39.1"
+        device_type: vmxnet3
+  
+      - name: idpp-storage
+        ip: "172.16.1.21"
+        netmask: "255.255.255.0"
+        gateway: "172.16.1.1"
+        device_type: vmxnet3
+
+      - name: idpp-provision
+        ip: "192.168.24.21"
+        netmask: "255.255.255.0"
+        gateway: "192.168.24.1"
+        device_type: vmxnet3
+  
+    disks:
+      - size_gb: 100
+        type: "thin"
+        datastore: "{{ vcenter_datastore }}"
+      - size_gb: 100
+        type: "thin"
+        datastore: "{{ vcenter_datastore }}"
+      - size_gb: 100
+        type: "thin"
+        datastore: "{{ vcenter_datastore }}"
+      - size_gb: 100
+        type: "thin"
+        datastore: "{{ vcenter_datastore }}"
+
+    vm_template: "rocky9-ansible-template"
+    guest_id: centos64Guest
+  
+  - name: "ceph-2"
+    memory_mb: 8196
+    num_cpus: 8
+    networks:
+      - name: idpp-external-net
+        ip: "10.130.39.22"
+        netmask: "255.255.255.0"
+        gateway: "10.130.39.1"
+        device_type: vmxnet3
+  
+      - name: idpp-storage
+        ip: "172.16.1.22"
+        netmask: "255.255.255.0"
+        gateway: "172.16.1.1"
+        device_type: vmxnet3
+        
+      - name: idpp-provision
+        ip: "192.168.24.22"
+        netmask: "255.255.255.0"
+        gateway: "192.168.24.1"
+        device_type: vmxnet3
+  
+    disks:
+      - size_gb: 100
+        type: "thin"
+        datastore: "{{ vcenter_datastore }}"
+      - size_gb: 100
+        type: "thin"
+        datastore: "{{ vcenter_datastore }}"
+      - size_gb: 100
+        type: "thin"
+        datastore: "{{ vcenter_datastore }}"
+      - size_gb: 100
+        type: "thin"
+        datastore: "{{ vcenter_datastore }}"
+
+    vm_template: "rocky9-ansible-template"
+    guest_id: centos64Guest  
+
+  - name: "ceph-3"
+    memory_mb: 8196
+    num_cpus: 8
+    networks:
+      - name: idpp-external-net
+        ip: "10.130.39.23"
+        netmask: "255.255.255.0"
+        gateway: "10.130.39.1"
+        device_type: vmxnet3
+  
+      - name: idpp-storage
+        ip: "172.16.1.23"
+        netmask: "255.255.255.0"
+        gateway: "172.16.1.1"
+        device_type: vmxnet3
+        
+      - name: idpp-provision
+        ip: "192.168.24.23"
+        netmask: "255.255.255.0"
+        gateway: "192.168.24.1"
+        device_type: vmxnet3
+  
+    disks:
+      - size_gb: 100
+        type: "thin"
+        datastore: "{{ vcenter_datastore }}"
+      - size_gb: 100
+        type: "thin"
+        datastore: "{{ vcenter_datastore }}"
+      - size_gb: 100
+        type: "thin"
+        datastore: "{{ vcenter_datastore }}"
+      - size_gb: 100
+        type: "thin"
+        datastore: "{{ vcenter_datastore }}"
+
+    vm_template: "rocky9-ansible-template"
+    guest_id: centos64Guest
+
+  - name: "compute-1"
+    memory_mb: 16384
+    num_cpus: 8
+    networks:
+      - name: idpp-external-net
+        ip: "10.130.39.31"
+        netmask: "255.255.255.0"
+        gateway: "10.130.39.1"
+        device_type: vmxnet3
+
+      - name: idpp-provision
+        ip: "192.168.24.31"
+        netmask: "255.255.255.0"
+        gateway: "192.168.24.1"
+        device_type: vmxnet3
+
+    disks:
+      - size_gb: 100
+        type: "thin"
+        datastore: "{{ vcenter_datastore }}"
+
+    vm_template: "rocky9-ansible-template"
+    guest_id: centos64Guest
+
+  - name: "compute-2"
+    memory_mb: 16384
+    num_cpus: 8
+    networks:
+      - name: idpp-external-net
+        ip: "10.130.39.32"
+        netmask: "255.255.255.0"
+        gateway: "10.130.39.1"
+        device_type: vmxnet3
+
+      - name: idpp-provision
+        ip: "192.168.24.32"
+        netmask: "255.255.255.0"
+        gateway: "192.168.24.1"
+        device_type: vmxnet3
+
+    disks:
+      - size_gb: 100
+        type: "thin"
+        datastore: "{{ vcenter_datastore }}"
+
+    vm_template: "rocky9-ansible-template"
+    guest_id: centos64Guest
+
+  - name: "controller-1"
+    memory_mb: 16384
+    num_cpus: 8
+    networks:
+      - name: idpp-external-net
+        ip: "10.130.39.11"
+        netmask: "255.255.255.0"
+        gateway: "10.130.39.1"
+        device_type: vmxnet3
+
+      - name: idpp-provision
+        ip: "192.168.24.11"
+        netmask: "255.255.255.0"
+        gateway: "192.168.24.1"
+        device_type: vmxnet3
+
+    disks:
+      - size_gb: 100
+        type: "thin"
+        datastore: "{{ vcenter_datastore }}"
+
+    vm_template: "rocky9-ansible-template"
+    guest_id: centos64Guest
+
+  - name: "controller-2"
+    memory_mb: 16384
+    num_cpus: 8
+    networks:
+      - name: idpp-external-net
+        ip: "10.130.39.12"
+        netmask: "255.255.255.0"
+        gateway: "10.130.39.1"
+        device_type: vmxnet3
+
+      - name: idpp-provision
+        ip: "192.168.24.12"
+        netmask: "255.255.255.0"
+        gateway: "192.168.24.1"
+        device_type: vmxnet3
+
+    disks:
+      - size_gb: 100
+        type: "thin"
+        datastore: "{{ vcenter_datastore }}"
+
+    vm_template: "rocky9-ansible-template"
+    guest_id: centos64Guest
+
+  - name: "controller-3"
+    memory_mb: 16384
+    num_cpus: 8
+    networks:
+      - name: idpp-external-net
+        ip: "10.130.39.13"
+        netmask: "255.255.255.0"
+        gateway: "10.130.39.1"
+        device_type: vmxnet3
+
+      - name: idpp-provision
+        ip: "192.168.24.13"
+        netmask: "255.255.255.0"
+        gateway: "192.168.24.1"
+        device_type: vmxnet3
+
+    disks:
+      - size_gb: 100
+        type: "thin"
+        datastore: "{{ vcenter_datastore }}"
+
+    vm_template: "rocky9-ansible-template"
+    guest_id: centos64Guest
+
+  - name: "repository-jy"
+    memory_mb: 16384
+    num_cpus: 8
+    networks:
+      - name: idpp-external-net
+        ip: "10.130.39.42"
+        netmask: "255.255.255.0"
+        gateway: "10.130.39.1"
+        device_type: vmxnet3
+
+      - name: idpp-provision
+        ip: "192.168.24.42"
+        netmask: "255.255.255.0"
+        gateway: "192.168.24.1" 
+        device_type: vmxnet3
+
+    disks:
+      - size_gb: 500
+        type: "thin"
+        datastore: "{{ vcenter_datastore }}"
+
+    vm_template: "rocky9-ansible-template"
+    guest_id: centos64Guest

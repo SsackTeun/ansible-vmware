@@ -1,0 +1,8 @@
+- name: 폴더 생성
+  hosts: localhost
+  tasks:
+    - include_role:
+        name: create-vm
+      vars:
+        state: absent
+        force: true

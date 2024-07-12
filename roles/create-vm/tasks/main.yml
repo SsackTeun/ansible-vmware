@@ -1,0 +1,25 @@
+---
+# tasks file for roles/create-vm
+- name: Create VM
+  community.vmware.vmware_guest:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    validate_certs: no
+    folder: "{{ folder_name }}"
+    datacenter: "{{ datacenter_name }}"
+    datastore: "{{ vcenter_datastore }}"
+    name: "{{ item.name }}"
+    state: "{{ state }}"
+    force: "{{ force | default(false) }}"
+    template: "{{ item.vm_template }}"
+    guest_id: "{{ item.guest_id }}"
+    hardware:
+      memory_mb: "{{ item.memory_mb }}"
+      num_cpus: "{{ item.num_cpus }}"
+      scsi: paravirtual
+    disk: "{{ item.disks }}"
+    networks: "{{ item.networks }}"
+    wait_for_ip_address: yes
+  with_items: "{{ vms }}"
+

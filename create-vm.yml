@@ -1,0 +1,11 @@
+- name: 폴더 생성
+  hosts: localhost
+  tasks:
+    - include_role:
+        name: create-folder
+    
+    - include_role:
+        name: create-vm
+      vars:
+        state: poweredon
+        force: true
